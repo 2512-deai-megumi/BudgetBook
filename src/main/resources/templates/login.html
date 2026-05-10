@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+th:replace="~{layout_login :: layout(~{::section})}">
+	
+<head>
+<meta charset="UTF-8">
+<title>ログイン</title>
+</head>
+<section class="d-flex align-items-center justify-content-center" style="height: 100vh;">
+	<div class="card shadow-sm mb-4" style="width: 500px;">
+	<div class="card-body p-4">
+
+	<h2 class="text-center mb-4">わくわく家計簿</h2>
+	
+	<form th:action="@{/login}" method="post">
+		<div class="mb-3">
+			<label class="form-label">メールアドレス</label>
+			<input type="text" name="username" class="form-control">
+		</div>
+		
+		<div class="mb-4">
+			<label class="form-label">パスワード</label>
+			<input type="password" name="password" class="form-control">
+		</div>
+		<div class="text-center">
+		<button type="submit" class="btn btn-success">ログイン</button>
+		</div>
+	</form>
+	<p th:if="${param.error}" class="text-danger mt-3 mb-0">ログインに失敗しました</p>
+	<div class="text-center mt-3">
+	<a th:href="@{/register}">会員登録はこちら</a>
+	</div>
+	</div>
+</div>
+</section>
+</html>

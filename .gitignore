@@ -1,0 +1,65 @@
+# ======================
+# Java / Spring Boot
+# ======================
+
+# ビルド成果物
+/target/
+/build/
+
+
+# ======================
+# Maven / Gradle
+# ======================
+
+.gradle/
+/gradle/
+
+# ======================
+# IDE
+# ======================
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# VSCode
+.vscode/
+
+# ======================
+# OS
+# ======================
+
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# ======================
+# ログ
+# ======================
+
+*.log
+
+# ======================
+# 環境設定（重要）
+# ======================
+
+# ローカル環境用（DBパスワードなど）
+application-local.properties
+
+# sampleは残す（共有用）
+# application-local.properties.sample はGit管理OK
+
+# ======================
+# データベース
+# ======================
+
+# H2
+*.db
+*.mv.db

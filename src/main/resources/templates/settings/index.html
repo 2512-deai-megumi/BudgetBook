@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::section}, true)}">
+
+<head>
+  <meta charset="UTF-8">
+  <title>設定画面</title>
+</head>
+<section>
+<div class="row justify-content-center">
+<div class="mb-4">
+	<h2 class="bold">設定</h2>
+	<p class="text-muted mb-0">アカウント情報の確認・変更ができます</p>
+</div>
+
+<p th:if="${message}" th:text="${message}" style="color: green"></p>
+
+
+<!--基本情報-->
+<div class="card shadow-sm mb-4">
+	<div class="card-body p-4">
+		<h4>プロフィール設定</h4>
+<form th:action="@{/settings}" th:object="${settingsForm}" method="post">
+	<div class="mb-3">
+		<label class="form-label">ユーザー名</label>
+		<input type="text" th:field="*{username}" class="form-control">
+		<div class="text-danger small" th:errors="*{username}"></div>
+	</div>
+	
+	<div class="mb-4">
+		<label class="form-label">メールアドレス</label>
+		<input type="email" th:field="*{email}"  class="form-control" readonly>
+		<div class="text-danger small" th:errors="*{email}"></div>
+	</div>
+	
+	<div>
+		<button type="submit" class="btn btn-primary">設定を変更</button>
+	</div>
+
+</form>
+
+</div>
+
+</div>
+<!--アカウント削除-->
+<div class="card border-danger shadow-sm">
+	
+	<div class="cardbody p-4">
+		<h4 class="card-title text-danger mb-0">アカウント削除</h4>
+		<p class="text-muted mb-3">
+			退会すると、登録した家計簿データとアカウント情報が削除されます。
+		</p>
+	
+<form th:action="@{/settings/delete}" method="post" onsubmit="return confirm('本当に退会しますか？この操作は取り消すことが出来ません')">
+	<button type="submit" class="btn btn-danger">退会する</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+</html>

@@ -1,0 +1,129 @@
+@charset "UTF-8";
+
+:root {
+	/*基本カラー*/
+	--wk-bg: #f5f7f6; /* 背景（薄いグレー） */
+	--wk-surface: #ffffff; /* カード */
+	--wk-border: #e2e8f0; /*枠線*/
+	
+	--wk-text: #1f2937; /*通常テキスト*/
+	--wk-subtext: #6b7280; /*サブテキスト*/
+	
+	/*メインカラー(緑)*/
+	--wk-primary: #40BA8D;
+	
+	/*ヘッダー*/
+	--wk-header-bg: #40BA8D;
+	--wk-header-border: #b2df8a;
+	
+	/*サブカラー*/
+	--wk-warning: #facc15;
+	
+	/*危険*/
+	--wk-danger: #ef4444;
+	--wkdanger-hover: #dc2626;
+	
+	/*デザイン*/
+	--wk-shadow: 0 6px 18px rgba(0,0,0,0.05);
+	--wk-radius:14px;
+	
+}
+
+/* =========================
+   全体
+========================= */
+body{
+	background-color: var(--wk-bg);
+	color: var(--wk-text)
+}
+
+/* =========================
+   ヘッダー
+========================= */
+.site-header{
+	background: var(--wk-primary);
+	border-bottom: 1px solid var(--wk-header-border);
+}
+
+.site-header .navbar-brand{
+	font-weight: bold;
+	font-size: 2.0rem;
+color: #ffff !important;
+}
+
+.site-header .login-user{
+	font-size: 0.9rem;
+	color: #ffff;
+}
+
+.site-header .nav-link-area {
+  gap: 0.75rem;
+  
+}
+
+.site-header .nav-link-area .nav-link-custom {
+	font-weight: bold;
+	text-decoration: none;
+	color: #ffff;
+}
+
+.site-header .nav-link-area .nav-link-custom:hover {
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+	color: #ffff;
+}
+/* =========================
+   共通カード
+========================= */
+.page-section {
+	background: 1px solid var(--wk-surface);
+}
+
+/* =========================
+   合計表示
+========================= */
+
+/* =========================
+   テーブル
+========================= */
+thead{
+	background-color: var(--wk-primary);
+}
+/* =========================
+   ボタン
+========================= */
+.btn-success{
+	color: #ffff;
+	font-weight: bold;
+	background: var(--wk-primary);
+	border: var(--wk-primary);
+}
+
+.btn-danger{
+	color: #ffff;
+	font-weight: bold;
+}
+
+
+/* =========================
+   フォーム
+========================= */
+
+/* =========================
+   ボタン
+========================= */
+
+
+/*ナビ系*/
+.btn-outline-dark{
+	border-color: #a3a3a3;
+	color: #374151;
+}
+
+.text-income{
+	color: #2e7d32;
+}
+
+.text-outcome{
+	color:  #c62828;
+}

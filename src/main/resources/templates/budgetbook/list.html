@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::section}, true)}">
+<head>
+  <meta charset="UTF-8">
+  <section>  <title>わくわく家計簿</title>
+</head>
+
+<section>	
+<h2 class="mb-4">今月の家計簿</h2>
+<div th:if="${errorMessage}" class="alert alert-danger">
+    <span th:text="${errorMessage}"></span>
+</div>
+<div class="d-flex justify-content-between align-item-center mb-3">
+	<p>
+		<a type="button" class="btn btn-success btn-lg" th:href="@{/budgetbook/new}">＋ 追加</a>
+	</p>
+	<div class="gap-4">
+		<div >収入合計：<span class="fs-3 fw-bold text-income" th:text="${#numbers.formatInteger(incomeTotal, 1, 'COMMA')}"></span>円</div>
+		<div>支出合計：<span class="fs-3 fw-bold text-outcome" th:text="${#numbers.formatInteger(outcomeTotal, 1, 'COMMA')}"></span>円</div>
+	</div>
+</div>
+<table border="1" class="table table-stripe table-hover align-middle">
+  <thead class="table-success">
+    <th>日付</th>
+	<th>収支</th>
+    <th>カテゴリ</th>
+    <th>金額</th>
+	<th>編集</th>
+	<th>削除</th>
+  </thead>
+  <tbody>
+  <tr th:each="item : ${items}">
+	<td th:text="${item.date}"></td>
+    <td th:text="${item.type}"></td>
+	<td th:text="${item.category}"></td>
+    <td th:text="${#numbers.formatInteger(item.amount, 1, 'COMMA')}"></td>
+	<td><a th:href="@{/budgetbook/edit/{id}(id=${item.id})}" class="btn btn-success">編集</a></td>
+	<td>
+		<form th:action="@{/budgetbook/delete/{id}(id=${item.id})}"
+		 method="post"
+		  style="display:inline"
+		  class = "delete-form"
+		   onsubmit="return confirm('本当に削除しますか？')">
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" >
+		<button type="submit" class="btn btn-danger">削除</button>
+		</form>
+	</td>
+  </tr>
+  </tbody>
+</table>
+
+
+<script th:src="@{/js/budgetbook.js}"></script>
+</section>
+
+</html>
