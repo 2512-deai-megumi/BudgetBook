@@ -28,7 +28,7 @@
 	
 	<div class="mb-4">
 		<label class="form-label">メールアドレス</label>
-		<input type="email" th:field="*{email}"  class="form-control" readonly>
+		<input type="email" th:field="*{email}"  class="form-control"><!--改修の為一時的にコメントアウトreadonly-->
 		<div class="text-danger small" th:errors="*{email}"></div>
 	</div>
 	

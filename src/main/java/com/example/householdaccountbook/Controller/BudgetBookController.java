@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.householdaccountbook.config.CustomUserDetails;
 import com.example.householdaccountbook.entity.BudgetBook;
 import com.example.householdaccountbook.entity.Users;
 import com.example.householdaccountbook.repository.BudgetBookRepository;
@@ -39,6 +40,7 @@ public class BudgetBookController {
 	private static final String VIEW_NEW = "budgetbook/new";
 	private static final String VIEW_EDIT = "budgetbook/edit";
 	private static final String VIEW_ARCHIVE = "budgetbook/archive";
+	private static final String VIEW_CATEGORY = "budgetbook/category";
 	private static final String REDIRECT_LIST = "redirect:/budgetbook";
 	
 	//一覧表示：ログイン中ユーザーのデータだけ出す
@@ -203,9 +205,21 @@ public class BudgetBookController {
 		return  VIEW_ARCHIVE;
 	}
 	
+	@GetMapping("/category")
+	public String category(Model model, Authentication authentication) {
+		Users loginUser = getLoginUser(authentication);
+		return  VIEW_CATEGORY;
+	
+	}
+	
+
+	
 	//ログインユーザーの取得
 	private Users getLoginUser(Authentication authentication) {
-		return usersRepository.findByEmail(authentication.getName()).orElseThrow(()->new RuntimeException("ログインユーザーが見つかりません"));
+		
+		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+		
+		return usersRepository.findById(userDetails.getUserId()).orElseThrow(()->new RuntimeException("ログインユーザーが見つかりません"));
 	}
 	
 	//ユーザーネームの表示

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.householdaccountbook.entity.Users;
 import com.example.householdaccountbook.repository.UsersRepository;
+import com.example.householdaccountbook.config.CustomUserDetails;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,13 +24,10 @@ public class CustomUserDetailService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
 		Users user = usersRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
 		
-		return new User(
+		return new CustomUserDetails(
+				user.getUserId(),
 				user.getEmail(),
-				user.getPassword(),
-				Collections.emptyList()
-				
+				user.getPassword()
 		);
 	}
-	
-	
 }

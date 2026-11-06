@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.householdaccountbook.config.CustomUserDetails;
 import com.example.householdaccountbook.entity.Users;
 import com.example.householdaccountbook.form.UserSettingsForm;
 import com.example.householdaccountbook.repository.BudgetBookRepository;
@@ -91,7 +92,8 @@ public class SettingsController {
 	
 	//ログインユーザーの取得
 	private Users getLoginUser(Authentication authentication) {
-		return usersRepository.findByEmail(authentication.getName()).orElseThrow(()->new RuntimeException("ログインユーザーが見つかりません"));
+		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+		return usersRepository.findById(userDetails.getUserId()).orElseThrow(()->new RuntimeException("ログインユーザーが見つかりません"));
 	}
 	
 	//ユーザーネームの表示
